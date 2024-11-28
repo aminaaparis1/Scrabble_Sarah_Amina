@@ -1,0 +1,12 @@
+/Users/aminazouane/Desktop/L3_POO_SCRABBLE-master/src/main/java/fr/pantheonsorbonne/miage/game/DeterministDeck.java
+/Users/aminazouane/Desktop/L3_POO_SCRABBLE-master/src/main/java/fr/pantheonsorbonne/miage/game/RandomDeck.java
+/Users/aminazouane/Desktop/L3_POO_SCRABBLE-master/src/main/java/fr/pantheonsorbonne/miage/game/Deck.java
+/Users/aminazouane/Desktop/L3_POO_SCRABBLE-master/src/main/java/fr/pantheonsorbonne/miage/engine/WarGameEngine.java
+/Users/aminazouane/Desktop/L3_POO_SCRABBLE-master/src/main/java/fr/pantheonsorbonne/miage/engine/local/LocalWarGame.java
+/Users/aminazouane/Desktop/L3_POO_SCRABBLE-master/src/main/java/fr/pantheonsorbonne/miage/exception/NoMoreCardException.java
+/Users/aminazouane/Desktop/L3_POO_SCRABBLE-master/src/main/java/fr/pantheonsorbonne/miage/engine/net/WarGameNetworkEngine.java
+/Users/aminazouane/Desktop/L3_POO_SCRABBLE-master/src/main/java/fr/pantheonsorbonne/miage/enums/CardValue.java
+/Users/aminazouane/Desktop/L3_POO_SCRABBLE-master/src/main/java/fr/pantheonsorbonne/miage/enums/CardColor.java
+/Users/aminazouane/Desktop/L3_POO_SCRABBLE-master/src/main/java/fr/pantheonsorbonne/miage/utils/ConsoleColors.java
+/Users/aminazouane/Desktop/L3_POO_SCRABBLE-master/src/main/java/fr/pantheonsorbonne/miage/game/Card.java
+/Users/aminazouane/Desktop/L3_POO_SCRABBLE-master/src/main/java/fr/pantheonsorbonne/miage/engine/net/WarGameNetorkPlayer.java
