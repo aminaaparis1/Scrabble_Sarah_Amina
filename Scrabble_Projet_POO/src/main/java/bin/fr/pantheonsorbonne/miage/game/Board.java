@@ -88,4 +88,47 @@ public class Board {
     public SpecialType getSpecialType(int x, int y) {
         return specialGrid[x][y];
     }
+
+    public void displayBoard() {
+        for (int x = 0; x < SIZE; x++) {
+            for (int y = 0; y < SIZE; y++) {
+                if (grid[x][y] != null) {
+                    System.out.print(" " + grid[x][y].getLetter() + " "); // Affiche la lettre de la tuile
+                } else {
+                    switch (specialGrid[x][y]) {
+                        case TRIPLE_WORD:
+                            System.out.print(" TW ");
+                            break;
+                        case DOUBLE_WORD:
+                            System.out.print(" DW ");
+                            break;
+                        case TRIPLE_LETTER:
+                            System.out.print(" TL ");
+                            break;
+                        case DOUBLE_LETTER:
+                            System.out.print(" DL ");
+                            break;
+                        case LANGUAGE_CHANGE:
+                            System.out.print(" LC ");
+                            break;
+                        default:
+                            System.out.print(" .. ");
+                            break;
+                    }
+                }
+            }
+            System.out.println(); // Passer à la ligne suivante
+        }
+    }
+    
+
+    public static void main(String[] args) {
+        // Création d'une instance de Board
+        Board board = new Board();
+        
+        // Affichage du plateau initial
+        System.out.println("Plateau Scrabble :");
+        board.displayBoard();
+    }
+    
 }
