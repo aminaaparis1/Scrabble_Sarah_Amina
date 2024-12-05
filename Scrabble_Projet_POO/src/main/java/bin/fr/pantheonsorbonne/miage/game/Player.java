@@ -3,12 +3,12 @@ package bin.fr.pantheonsorbonne.miage.game;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
-    private String name; // Nom du joueur
-    private int score; // Score actuel
-    private Language activeLanguage; // Langue active du joueur
-    private TileBag tileBag; // Pioche spécifique à la langue
-    private List<Tile> tilePile; // Pile de tuiles du joueur
+public abstract class Player {
+    protected String name; 
+    private int score; 
+    private Language activeLanguage; 
+    private TileBag tileBag; 
+    private List<Tile> tilePile; 
 
     private static final int MAX_TILES = 7;
 
@@ -71,6 +71,8 @@ public class Player {
             }
         }
     }
+    
+    public abstract void penalizeOpponent(List<Player> players);
 
     public boolean canPlay() {
         return !tilePile.isEmpty();

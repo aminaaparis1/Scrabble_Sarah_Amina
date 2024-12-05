@@ -5,7 +5,7 @@ public class ScrabbleGame {
         System.out.println("Bienvenue dans le jeu Scrabble !");
 
      
-        Player player = new Player("Alice");
+        Player player = new StupidPlayer("Alice");
         System.out.println("Joueur : " + player.getName());
         System.out.println("Langue active : " + player.getActiveLanguage());
 
