@@ -1,9 +1,13 @@
 # SCRABBLE ![Static Badge](https://img.shields.io/badge/S-yellow) ![Static Badge](https://img.shields.io/badge/C-yellow) ![Static Badge](https://img.shields.io/badge/A-yellow) ![Static Badge](https://img.shields.io/badge/B-yellow) ![Static Badge](https://img.shields.io/badge/B-yellow) ![Static Badge](https://img.shields.io/badge/L-yellow) ![Static Badge](https://img.shields.io/badge/E-yellow)
+
 # A FAIRE :
 Définir ce qu'est une pile
 Faire des mots inversés : lorqu'un joueur forme un mot à l'envers, il peut réduire le score de l'adversaire de son choix.
 PNG de la photo de la table scrabble
 Lors du changement de langue, on addditione toutes les lettres du la pioche du changement de langue à la pioche de la langue par défaut (français)
+
+
+
 # Règles du jeu 🎮
 1. Objectif du jeu 🎯
     - But : Être le dernier joueur en lice avec des lettres dans sa pile et avoir le plus grand score.
