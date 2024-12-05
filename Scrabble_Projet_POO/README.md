@@ -1,5 +1,5 @@
 # SCRABBLE ![Static Badge](https://img.shields.io/badge/S-yellow) ![Static Badge](https://img.shields.io/badge/C-yellow) ![Static Badge](https://img.shields.io/badge/A-yellow) ![Static Badge](https://img.shields.io/badge/B-yellow) ![Static Badge](https://img.shields.io/badge/B-yellow) ![Static Badge](https://img.shields.io/badge/L-yellow) ![Static Badge](https://img.shields.io/badge/E-yellow)
-
+test 
 # Règles du jeu 🎮
 1. Objectif du jeu 🎯
     - But : Être le dernier joueur en lice avec des lettres dans sa pile et avoir le plus grand score.
