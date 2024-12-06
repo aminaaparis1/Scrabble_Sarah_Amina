@@ -10,17 +10,26 @@ public class TileBag {
 
     public TileBag(String language) {
         tiles = new ArrayList<>();
-        if (language.equals("fr")) {
-            addFrenchTiles();  // Ajouter les tuiles françaises
-        } else if (language.equals("en")) {
-            addEnglishTiles();  // Ajouter les tuiles anglaises
-        } else if (language.equals("es")) {
-            addSpanishTiles();  // Ajouter les tuiles espagnoles
-        } else {
-            System.out.println("Langue non reconnue, pioche vide.");
+        System.out.println("Langue initialisée : " + language);
+        switch (language.toUpperCase()) {
+            case "FRENCH":
+            case "FR":
+                addFrenchTiles();
+                break;
+            case "ENGLISH":
+            case "EN":
+                addEnglishTiles();
+                break;
+            case "SPANISH":
+            case "ES":
+                addSpanishTiles();
+                break;
+            default:
+                System.out.println("Langue non reconnue, pioche vide.");
         }
-        Collections.shuffle(tiles); // Mélanger les tuiles
+        Collections.shuffle(tiles);
     }
+    
 
     private void addFrenchTiles() {
         addTiles('A', 9, 1);
@@ -49,7 +58,9 @@ public class TileBag {
         addTiles('X', 1, 10);
         addTiles('Y', 1, 10);
         addTiles('Z', 1, 10);
-        addTiles('*', 2, 0);  // Joker
+        addTiles('*', 2, 0);  
+
+        System.out.println("Tuiles françaises ajoutées : " + tiles.size());
     }
 
     private void addEnglishTiles() {
@@ -79,7 +90,7 @@ public class TileBag {
         addTiles('X', 1, 8);
         addTiles('Q', 1, 10);
         addTiles('Z', 1, 10);
-        addTiles('*', 2, 0);  // Joker
+        addTiles('*', 2, 0);  
     }
 
     private void addSpanishTiles() {
@@ -108,7 +119,7 @@ public class TileBag {
         addTiles('Ñ', 1, 8);
         addTiles('X', 1, 8);
         addTiles('Z', 1, 10);
-        addTiles('*', 2, 0);  // Joker
+        addTiles('*', 2, 0);  
     }
 
     private void addTiles(char letter, int count, int value) {
@@ -119,12 +130,13 @@ public class TileBag {
 
     public Tile drawTile() {
         if (tiles.isEmpty()) {
-            return null;  // Retourner null si la pioche est vide
+            return null;  
         }
-        return tiles.remove(0);  // Retirer et retourner la première tuile
+        return tiles.remove(0);  
     }
-
+    
     public int getRemainingTiles() {
         return tiles.size();
     }
-}
+    
+} 

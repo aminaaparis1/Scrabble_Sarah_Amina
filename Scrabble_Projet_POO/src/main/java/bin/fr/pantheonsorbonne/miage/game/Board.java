@@ -5,23 +5,22 @@ public class Board {
     private final SpecialType[][] specialGrid;
     private static final int SIZE = 15;
 
-    // Constructeur de la classe Board
+    
     public Board() {
         grid = new Tile[SIZE][SIZE];
         specialGrid = new SpecialType[SIZE][SIZE];
         initializeBoard();
     }
 
-    // Initialisation du plateau et des cases spéciales
+    
     private void initializeBoard() {
         for (int x = 0; x < SIZE; x++) {
             for (int y = 0; y < SIZE; y++) {
-                specialGrid[x][y] = determineSpecialType(x, y); // Assigner le type spécial à chaque case
+                specialGrid[x][y] = determineSpecialType(x, y); 
             }
         }
     }
 
-    // Détermine le type spécial pour chaque case
     private SpecialType determineSpecialType(int x, int y) {
         if ((x == 0 && y == 0) || (x == 14 && y == 14) || (x == 0 && y == 14) || (x == 14 && y == 0)) {
             return SpecialType.TRIPLE_WORD;
@@ -41,7 +40,7 @@ public class Board {
         return SpecialType.NONE;
     }
 
-    // Place une tuile sur le plateau
+ 
     public void placeTile(Tile tile, int x, int y) {
         if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) {
             throw new IllegalArgumentException("Position hors du plateau.");
@@ -53,15 +52,15 @@ public class Board {
         applySpecialEffect(tile, x, y);
     }
 
-    // Applique l'effet spécial de la case (bonus)
+    
     private void applySpecialEffect(Tile tile, int x, int y) {
         SpecialType specialType = specialGrid[x][y];
         switch (specialType) {
             case DOUBLE_LETTER:
-                tile.setValue(tile.getValue() * 2);  // Applique un bonus de double lettre
+                tile.setValue(tile.getValue() * 2); 
                 break;
             case TRIPLE_LETTER:
-                tile.setValue(tile.getValue() * 3);  // Applique un bonus de triple lettre
+                tile.setValue(tile.getValue() * 3);  
                 break;
             case DOUBLE_WORD:
                 System.out.println("Bonus double mot !");
@@ -77,7 +76,7 @@ public class Board {
         }
     }
 
-    // Récupère la tuile en fonction de sa position sur le plateau
+   
     public Tile getTile(int x, int y) {
         if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) {
             throw new IllegalArgumentException("Position hors du plateau.");
@@ -85,17 +84,17 @@ public class Board {
         return grid[x][y];
     }
 
-    // Récupère le type spécial d'une case en fonction de sa position
+   
     public SpecialType getSpecialType(int x, int y) {
         return specialGrid[x][y];
     }
 
-    // Affiche le plateau de jeu
+    
     public void displayBoard() {
         for (int x = 0; x < SIZE; x++) {
             for (int y = 0; y < SIZE; y++) {
                 if (grid[x][y] != null) {
-                    System.out.print(" " + grid[x][y].getLetter() + " "); // Affiche la lettre de la tuile
+                    System.out.print(" " + grid[x][y].getLetter() + " "); 
                 } else {
                     switch (specialGrid[x][y]) {
                         case TRIPLE_WORD:
@@ -119,8 +118,85 @@ public class Board {
                     }
                 }
             }
-            System.out.println(); // Passer à la ligne suivante
+            System.out.println(); 
         }
     }
+
+    public boolean isValidMove(String word, int startX, int startY, boolean isHorizontal, Player player) {
+       
+        if (isHorizontal && (startY + word.length() > SIZE)){
+            return false;
+
+        } 
+        if (!isHorizontal && (startX + word.length() > SIZE)) {
+            return false;
+        }
+    
+      
+        for (int i = 0; i < word.length(); i++) {
+            int x = startX + (isHorizontal ? 0 : i);
+            int y = startY + (isHorizontal ? i : 0);
+    
+            if (grid[x][y] != null && grid[x][y].getLetter() != word.charAt(i)) {
+                return false; 
+            }
+        }
+    
+        
+        Dictionary dictionary = new Dictionary();
+        if (!dictionary.isWordValid(word, "fr")) {
+            return false; 
+        }
+    
+        return true;
+    }
+    
+    public void placeWord(String word,int startX, int startY, boolean isHorizontal, Player player){
+        for (int i = 0; i < word.length(); i++) {
+            int x = startX + (isHorizontal ? 0 : i);
+            int y = startY + (isHorizontal ? i : 0);
+    
+           
+            grid[x][y] = new Tile(word.charAt(i), player.getTileValue(word.charAt(i)));
+   
+            
+            player.removeTile(word.charAt(i));
+        }
+    }
+
+    public int calculateWordScore(String word, int startX, int startY, boolean isHorizontal) {
+        int score = 0;
+        int wordMultiplier = 1;
+    
+        for (int i = 0; i < word.length(); i++) {
+            int x = startX + (isHorizontal ? 0 : i);
+            int y = startY + (isHorizontal ? i : 0);
+    
+            Tile tile = grid[x][y];
+            int letterScore = tile.getValue();
+    
+            switch (specialGrid[x][y]) {
+                case DOUBLE_LETTER:
+                    letterScore *= 2;
+                    break;
+                case TRIPLE_LETTER:
+                    letterScore *= 3;
+                    break;
+                case DOUBLE_WORD:
+                    wordMultiplier *= 2;
+                    break;
+                case TRIPLE_WORD:
+                    wordMultiplier *= 3;
+                    break;
+            }
+    
+            score += letterScore;
+        }
+    
+        return score * wordMultiplier;
+    }
+
+    
+    
 
 }

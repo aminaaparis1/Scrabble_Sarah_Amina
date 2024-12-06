@@ -1,8 +1,8 @@
 package bin.fr.pantheonsorbonne.miage.game;
 
 public class Tile {
-    private char letter; // Lettre de la tuile
-    private int value; // Valeur de la tuile
+    private char letter; 
+    private int value; 
 
     public Tile(char letter, int value) {
         this.letter = letter;
@@ -17,7 +17,7 @@ public class Tile {
         return value;
     }
 
-    // Ajout de la méthode setValue() pour modifier la valeur d'une tuile
+   
     public void setValue(int value) {
         this.value = value;
     }

@@ -42,18 +42,17 @@ public class Dictionary {
     }
     public boolean isWordValid(String word, String language) {
         switch (language) {
-            case "fr":
+            case "FRENCH":
                 return frenchWords.contains(removeAccents(word.toLowerCase()));
-            case "en":
+            case "ENGLISH":
                 return englishWords.contains(removeAccents(word.toLowerCase()));
-            case "es":
+            case "SPANISH":
                 return spanishWords.contains(removeAccents(word.toLowerCase()));
             default:
                 return false; 
         }
     }
 
-    //Test pour vérifier que le code marche
     public static void main(String[] args) {
         Dictionary dictionary = new Dictionary();
         System.out.println(dictionary.isWordValid("chat", "fr"));   
