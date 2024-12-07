@@ -34,7 +34,7 @@ public class SmartPlayer extends Player{
     @Override
     public String chooseWord(Board board, TileBag tileBag) {
         List<String> possibleWords = generatePossibleWords(); // Générer les mots possibles
-        Dictionary dictionary = new Dictionary();
+     
         String bestWord = null;
     
         for (String word : possibleWords) {
