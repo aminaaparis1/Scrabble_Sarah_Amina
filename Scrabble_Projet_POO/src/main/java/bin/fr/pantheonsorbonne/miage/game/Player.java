@@ -93,38 +93,38 @@ public abstract class Player {
 
     public int chooseStartX(Board board) {
         if (board.isEmpty()) {
-            return 7; // Fixe la position X pour le premier tour au centre
+            return 7; 
         }
-        return chooseValidStartPosition(board)[0]; // Sélectionne une position valide pour les tours suivants
+        return chooseValidStartPosition(board)[0]; 
     }
     
     public int chooseStartY(Board board) {
         if (board.isEmpty()) {
-            return 7; // Fixe la position Y pour le premier tour au centre
+            return 7; 
         }
-        return chooseValidStartPosition(board)[1]; // Sélectionne une position valide pour les tours suivants
+        return chooseValidStartPosition(board)[1]; 
     }
     
-    // Méthode pour trouver une position valide
+    
     private int[] chooseValidStartPosition(Board board) {
         List<int[]> validPositions = findValidStartPositions(board);
     
         if (validPositions.isEmpty()) {
-            // Si aucune position valide n'est trouvée (très rare), retourne une position aléatoire
+            
             return new int[]{new Random().nextInt(15), new Random().nextInt(15)};
         }
     
-        // Retourne une position valide aléatoirement
+       
         return validPositions.get(new Random().nextInt(validPositions.size()));
     }
     
-    // Méthode pour trouver toutes les positions valides
+    
     private List<int[]> findValidStartPositions(Board board) {
         List<int[]> validPositions = new ArrayList<>();
     
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 15; y++) {
-                // Vérifie si la case est vide mais adjacente à une lettre existante
+               
                 if (board.getTile(x, y) == null) {
                     if ((x > 0 && board.getTile(x - 1, y) != null) ||
                         (x < 14 && board.getTile(x + 1, y) != null) ||
@@ -205,7 +205,7 @@ private List<String> generatePossibleWords(Dictionary dictionary) {
 }
 
  
-private void generatePermutations(String prefix, List<Tile> tiles, Set<String> words, Dictionary dictionary) {
+public void generatePermutations(String prefix, List<Tile> tiles, Set<String> words, Dictionary dictionary) {
    
     if (!prefix.isEmpty() && dictionary.isWordValid(prefix, this.getActiveLanguage().name())) {
         words.add(prefix);

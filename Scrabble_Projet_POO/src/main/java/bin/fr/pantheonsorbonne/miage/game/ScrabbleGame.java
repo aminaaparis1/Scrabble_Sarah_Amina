@@ -96,17 +96,16 @@ public class ScrabbleGame {
         int startY = player.chooseStartY(board);
         boolean isHorizontal = player.chooseOrientation();
     
-        // Valider et placer le mot
+       
         if (board.isValidMove(word, startX, startY, isHorizontal, player)) {
             try {
                 board.placeWord(word, startX, startY, isHorizontal, player);
     
-                // Calculer et ajouter le score
+               
                 int wordScore = board.calculateWordScore(word, startX, startY, isHorizontal);
                 player.addScore(wordScore);
                 System.out.println("Score de " + player.getName() + " après ce tour : " + player.getScore());
     
-                // Remplir les tuiles après un tour réussi
                 while (player.getTilePile().size() < 7 && tileBag.getRemainingTiles() > 0) {
                     player.addTile(tileBag.drawTile());
                 }
