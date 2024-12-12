@@ -36,22 +36,7 @@ public class StupidPlayer extends Player{
     
     }
     
-    @Override
-    public String chooseWord(Board board, TileBag tileBag){
-        StringBuilder word = new StringBuilder();
-
-        Random random= new Random();
-        int wordLength= Math.min(3,tilePile.size());
-        for(int i=0; i < wordLength; i++){
-            Tile tile=tilePile.get(random.nextInt(tilePile.size()));
-            word.append(tile.getLetter());
-
-        }
-
-        System.out.println(getName()+" a choisit le mot : "+ word);
-        return word.toString();
-
-    }
-   
-
 }
+
+    
+

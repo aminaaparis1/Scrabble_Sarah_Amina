@@ -41,23 +41,31 @@ public class Dictionary {
         return normalized.replaceAll("[^\\p{ASCII}]", "");
     }
     public boolean isWordValid(String word, String language) {
+        String processedWord = removeAccents(word.toLowerCase());
+        boolean result;
         switch (language) {
             case "FRENCH":
-                return frenchWords.contains(removeAccents(word.toLowerCase()));
+                result = frenchWords.contains(processedWord);
+                break;
             case "ENGLISH":
-                return englishWords.contains(removeAccents(word.toLowerCase()));
+                result = englishWords.contains(processedWord);
+                break;
             case "SPANISH":
-                return spanishWords.contains(removeAccents(word.toLowerCase()));
+                result = spanishWords.contains(processedWord);
+                break;
             default:
-                return false; 
+                result = false;
         }
+       
+        return result;
     }
+    
 
     public static void main(String[] args) {
         Dictionary dictionary = new Dictionary();
-        System.out.println(dictionary.isWordValid("chat", "fr"));   
-        System.out.println(dictionary.isWordValid("dog", "en"));    
-        System.out.println(dictionary.isWordValid("gato", "es"));   
-        System.out.println(dictionary.isWordValid("voiture", "fr"));
+        System.out.println(dictionary.isWordValid("erre", "FRENCH"));   
+        System.out.println(dictionary.isWordValid("dog", "ENGLISH"));    
+        System.out.println(dictionary.isWordValid("gato", "SPANISH"));   
+        System.out.println(dictionary.isWordValid("voiture", "FRENCH"));
     }
 }

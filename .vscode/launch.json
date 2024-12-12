@@ -1,0 +1,56 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "request": "attach",
+            "name": "Java",
+            "port": 5005,
+            "sourceRoots": []
+        },
+        {
+            "type": "java",
+            "request": "attach",
+            "name": "Java",
+            "port": 5005,
+            "sourceRoots": []
+        },
+        {
+            "type": "java",
+            "request": "attach",
+            "name": "Java",
+            "port": 5005,
+            "sourceRoots": []
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Dictionary",
+            "request": "launch",
+            "mainClass": "bin.fr.pantheonsorbonne.miage.game.Dictionary",
+            "projectName": "l3-poo-war"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "bin.fr.pantheonsorbonne.miage.game.Main",
+            "projectName": "l3-poo-war"
+        },
+        {
+            "type": "java",
+            "name": "ScrabbleGame",
+            "request": "launch",
+            "mainClass": "bin.fr.pantheonsorbonne.miage.game.ScrabbleGame",
+            "projectName": "l3-poo-war"
+        }
+    ]
+}
