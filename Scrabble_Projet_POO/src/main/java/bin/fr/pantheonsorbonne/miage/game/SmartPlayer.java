@@ -28,10 +28,6 @@ public class SmartPlayer extends Player {
         else {
             System.out.println(this.name + "n'a trouvé personne à pénaliser.");
         }
-    }
-
-  
-    
-    
+    }  
 
 }

@@ -3,13 +3,12 @@ package bin.fr.pantheonsorbonne.miage.game;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 public class ScrabbleGame {
 
     private List<Player> players;
     private TileBag tileBag;
-    private int numberOfPlayers;
+   
     private Board board;
 
     public static void main(String[] args) {
@@ -20,14 +19,7 @@ public class ScrabbleGame {
 
     public void startGame() {
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Combien de joueurs (2 à 4) ? ");
-        numberOfPlayers = scanner.nextInt();
-
-        if (numberOfPlayers < 2 || numberOfPlayers > 4) {
-            System.out.println("Nombre de joueurs invalide. Choisissez entre 2 et 4 joueurs.");
-            return;
-        }
+       int numberOfPlayers=4;
 
         System.out.println("Nombre de joueurs : " + numberOfPlayers);
 
@@ -98,7 +90,7 @@ public class ScrabbleGame {
     
        
         if (board.isValidMove(word, startX, startY, isHorizontal, player)) {
-            try {
+            
                 board.placeWord(word, startX, startY, isHorizontal, player);
     
                
@@ -110,11 +102,10 @@ public class ScrabbleGame {
                     player.addTile(tileBag.drawTile());
                 }
     
-            } catch (IllegalArgumentException e) {
-                System.out.println("Erreur lors du placement : " + e.getMessage());
-                System.out.println("Coup invalide. Le joueur passe son tour.");
-            }
-        } else {
+            } 
+                
+            
+        else {
             System.out.println("Coup invalide. Le joueur passe son tour.");
         }
         
@@ -124,17 +115,7 @@ public class ScrabbleGame {
         displayPlayersTiles();
     }
     
-    private void refillPlayerTiles(Player player) {
-        while (player.getTilePile().size() < 7) {
-            Tile tile = tileBag.drawTile();
-            if (tile != null) {
-                player.addTile(tile);
-            } else {
-                break;
-            }
-        }
-    }
-
+  
     public boolean isGameOver() {
         if (tileBag.getRemainingTiles() == 0) {
             for (Player player : players) {

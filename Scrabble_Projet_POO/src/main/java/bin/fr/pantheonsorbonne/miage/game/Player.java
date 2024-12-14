@@ -106,7 +106,7 @@ public abstract class Player {
     }
     
     
-    private int[] chooseValidStartPosition(Board board) {
+    public int[] chooseValidStartPosition(Board board) {
         List<int[]> validPositions = findValidStartPositions(board);
     
         if (validPositions.isEmpty()) {
@@ -119,18 +119,16 @@ public abstract class Player {
     }
     
     
-    private List<int[]> findValidStartPositions(Board board) {
+    public  List<int[]> findValidStartPositions(Board board) {
         List<int[]> validPositions = new ArrayList<>();
-    
         for (int x = 0; x < 15; x++) {
-            for (int y = 0; y < 15; y++) {
-               
-                if (board.getTile(x, y) == null) {
-                    if ((x > 0 && board.getTile(x - 1, y) != null) ||
-                        (x < 14 && board.getTile(x + 1, y) != null) ||
-                        (y > 0 && board.getTile(x, y - 1) != null) ||
-                        (y < 14 && board.getTile(x, y + 1) != null)) {
-                        validPositions.add(new int[]{x, y});
+          for (int y = 0; y < 15; y++) {
+            if (board.getTile(x, y) == null) {
+              if ((x > 0 && board.getTile(x - 1, y) != null) ||
+                (x < 14 && board.getTile(x + 1, y) != null) ||
+                (y > 0 && board.getTile(x, y - 1) != null) ||
+                (y < 14 && board.getTile(x, y + 1) != null)) {
+                 validPositions.add(new int[]{x, y});
                     }
                 }
             }
@@ -239,7 +237,7 @@ public void removeTile(char letter) {
 
 public int getTileValue(char letter) {
     for (Tile tile : tilePile) { 
-        if (tile.getLetter() == letter) {
+        if (tile.getLetter() == letter || (letter != '*' && tile.getLetter() == '*')) {
             return tile.getValue(); 
         }
     }
@@ -288,7 +286,7 @@ public void refillTiles(TileBag tileBag) {
     while (tilePile.size() < MAX_TILES && tileBag.getRemainingTiles() > 0) {
         Tile tile = tileBag.drawTile();
         if (tile != null) {
-            addTile(tile); // Utilise la méthode existante
+            addTile(tile); 
         }
     }
 
@@ -296,11 +294,6 @@ public void refillTiles(TileBag tileBag) {
    
 
 }
-
-
-
-
-
 
 public boolean hasTile(char letter) {
     for (Tile tile : tilePile) {
@@ -312,9 +305,6 @@ public boolean hasTile(char letter) {
     System.out.println("Tuile non trouvée : " + letter);
     return false;
 }
-
-
-
 
 
 }

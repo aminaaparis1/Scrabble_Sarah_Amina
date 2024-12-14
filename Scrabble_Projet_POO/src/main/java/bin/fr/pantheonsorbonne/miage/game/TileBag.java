@@ -13,15 +13,15 @@ public class TileBag {
         System.out.println("Langue initialisée : " + language);
         switch (language.toUpperCase()) {
             case "FRENCH":
-            case "FR":
+            
                 addFrenchTiles();
                 break;
             case "ENGLISH":
-            case "EN":
+           
                 addEnglishTiles();
                 break;
             case "SPANISH":
-            case "ES":
+           
                 addSpanishTiles();
                 break;
             default:

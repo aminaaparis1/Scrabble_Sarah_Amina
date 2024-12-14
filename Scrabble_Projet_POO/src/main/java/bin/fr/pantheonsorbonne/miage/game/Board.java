@@ -87,30 +87,41 @@ public class Board {
     }
 
     public void displayBoard() {
-        System.out.print("    "); 
-        for (int y = 0; y < SIZE; y++) {
-            System.out.printf("%2d  ", y); 
-        }
-        System.out.println();
-    
-        for (int x = 0; x < SIZE; x++) {
-            System.out.printf("%2d  ", x); 
-            for (int y = 0; y < SIZE; y++) {
-                if (grid[x][y] != null) {
-                    System.out.print(" " + grid[x][y].getLetter() + " ");
-                } else {
-                    switch (specialGrid[x][y]) {
-                        case TRIPLE_WORD -> System.out.print(" TW ");
-                        case DOUBLE_WORD -> System.out.print(" DW ");
-                        case TRIPLE_LETTER -> System.out.print(" TL ");
-                        case DOUBLE_LETTER -> System.out.print(" DL ");
-                        case LANGUAGE_CHANGE -> System.out.print(" LC ");
-                        default -> System.out.print(" .. ");
-                    }
+       for(int x=0; x< SIZE; x++){
+        for(int y=0; y< SIZE; y++){
+            if(grid[x][y]!=null){
+                System.out.print(" "+grid[x][y].getLetter()+"  ");
+            }
+            else{
+                switch(specialGrid[x][y]){
+                    case TRIPLE_WORD:
+                    System.out.print(" TW ");
+                    break;
+
+                    case DOUBLE_WORD:
+                    System.out.print(" DW ");
+                    break;
+
+                    case DOUBLE_LETTER:
+                    System.out.print(" DL ");
+                    break;
+
+                    case TRIPLE_LETTER:
+                    System.out.print(" TL ");
+                    break;
+
+                    case LANGUAGE_CHANGE:
+                    System.out.print(" LC ");
+                    break;
+
+                    default: 
+                    System.out.print(" .. ");
+                    break;
                 }
             }
-            System.out.println();
         }
+        System.out.println();
+       }
     }
     
     public boolean isValidMove(String word, int startX, int startY, boolean isHorizontal, Player player) {
