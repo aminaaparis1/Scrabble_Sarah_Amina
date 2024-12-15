@@ -11,6 +11,8 @@ public class Board {
     public Board() {
         grid = new Tile[SIZE][SIZE];
         specialGrid = new SpecialType[SIZE][SIZE];
+        
+        
         initializeBoard();
     }
 
@@ -18,6 +20,7 @@ public class Board {
         for (int x = 0; x < SIZE; x++) {
             for (int y = 0; y < SIZE; y++) {
                 specialGrid[x][y] = determineSpecialType(x, y);
+                
             }
         }
     }
@@ -35,13 +38,15 @@ public class Board {
         if ((x + y) % 3 == 0) {
             return SpecialType.DOUBLE_LETTER;
         }
-        if (x == 7 && y == 7) {
+
+        if ((x == 0 && y == 13) || (x == 1 && y == 12) || (x == 1 && y == 6)) {
             return SpecialType.LANGUAGE_CHANGE;
         }
+        
         return SpecialType.NONE;
     }
 
-    public void placeTile(Tile tile, int x, int y) {
+    public void placeTile(Tile tile, int x, int y, Player player) {
         if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) {
             throw new IllegalArgumentException("Position hors du plateau.");
         }
@@ -49,10 +54,10 @@ public class Board {
             throw new IllegalArgumentException("Case déjà occupée.");
         }
         grid[x][y] = tile;
-        applySpecialEffect(tile, x, y);
+        applySpecialEffect(tile, x, y,player);
     }
 
-    private void applySpecialEffect(Tile tile, int x, int y) {
+    private void applySpecialEffect(Tile tile, int x, int y,  Player player) {
         SpecialType specialType = specialGrid[x][y];
         switch (specialType) {
             case DOUBLE_LETTER:
@@ -69,6 +74,7 @@ public class Board {
                 break;
             case LANGUAGE_CHANGE:
                 System.out.println("Changement de langue activé !");
+                languageChange(player);
                 break;
             case NONE:
                 break;
@@ -92,7 +98,7 @@ public class Board {
             if(grid[x][y]!=null){
                 System.out.print(" "+grid[x][y].getLetter()+"  ");
             }
-            else{
+            else {
                 switch(specialGrid[x][y]){
                     case TRIPLE_WORD:
                     System.out.print(" TW ");
@@ -123,6 +129,38 @@ public class Board {
         System.out.println();
        }
     }
+
+    public Language getNextLanguage(Language currentLanguage){
+        Language[] languages = Language.values();
+        int currentIndex=currentLanguage.ordinal();
+        int nextIndex;
+        if (currentIndex + 1 >= languages.length) {
+            nextIndex = 0;
+        } else {
+            nextIndex = currentIndex + 1;
+        } 
+        return languages[nextIndex];
+        
+    }
+
+    public void languageChange(Player player){
+        Language currentLanguage=player.getActiveLanguage();
+        Language newLanguage=getNextLanguage(currentLanguage);
+        player.changeLanguage(newLanguage);
+
+        TileBag currentTileBag=player.getTileBag();
+        TileBag newTileBag=new TileBag(newLanguage.name());
+
+        while(newTileBag.getRemainingTiles()>0){
+            Tile newTile=newTileBag.drawTile();
+            currentTileBag.addTiles(newTile.getLetter(), 1, newTile.getValue());
+
+        }
+        
+        System.out.println(player.getName() + " joue maintenant en " + newLanguage + " !");
+    }
+
+    
     
     public boolean isValidMove(String word, int startX, int startY, boolean isHorizontal, Player player) {
         if (this.isEmpty()) { 
@@ -154,48 +192,41 @@ public class Board {
                 return false;
             }
         }
-    
         return true;
     }
-    
     
     public boolean isConnectedToExistingWord(int startX, int startY, String word, boolean isHorizontal) {
         int x = startX;
         int y = startY;
     
+        boolean isConnected = false;
+    
         for (int i = 0; i < word.length(); i++) {
-            
-            if (isHorizontal) {
-                
-                if ((x > 0 && grid[x - 1][y] != null) || (x < 14 && grid[x + 1][y] != null)) {
-                    return true;
-                }
-            } else {
-              
-                if ((y > 0 && grid[x][y - 1] != null) || (y < 14 && grid[x][y + 1] != null)) {
-                    return true;
-                }
+           
+            if ((x > 0 && grid[x - 1][y] != null) || (x < 14 && grid[x + 1][y] != null) || 
+                (y > 0 && grid[x][y - 1] != null) || (y < 14 && grid[x][y + 1] != null)) {
+                isConnected = true;
             }
     
            
             if (grid[x][y] != null) {
-                return true;
+                isConnected = true;
             }
     
-          
+            
             if (isHorizontal) {
                 y++;
             } else {
                 x++;
             }
     
-            
+           
             if (x < 0 || x >= 15 || y < 0 || y >= 15) {
-                break; 
+                break;
             }
         }
     
-        return false;
+        return isConnected;
     }
     
     
@@ -224,7 +255,7 @@ public class Board {
     }
     public void placeWord(String word, int startX, int startY, boolean isHorizontal, Player player) {
     System.out.println("Tentative de placement du mot : " + word + " par " + player.getName());
-    System.out.println("Tuiles actuelles du joueur : " + player.getTilePile());
+    
 
     
     List<Character> requiredTiles = new ArrayList<>();
@@ -245,13 +276,21 @@ public class Board {
         int y = startY + (isHorizontal ? i : 0);
 
         char currentChar = word.charAt(i);
+        
+        if (grid[x][y] != null) {
+            
+            if (grid[x][y].getLetter() != currentChar) {
+                throw new IllegalArgumentException("Conflit : lettre différente déjà placée sur la case (" + x + ", " + y + ")");
+            } 
+        }
+
+        
         System.out.println("Placement de la lettre '" + currentChar + "' en (" + x + ", " + y + ")");
-
-       
-        grid[x][y] = new Tile(currentChar, player.getTileValue(currentChar));
+        Tile tile = new Tile(currentChar, player.getTileValue(currentChar));
+        placeTile(tile, x, y, player);
     }
-
     
+
     for (char letter : word.toCharArray()) {
         player.removeTile(letter);
     }

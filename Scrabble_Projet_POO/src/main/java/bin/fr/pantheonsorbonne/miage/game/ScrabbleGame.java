@@ -11,17 +11,13 @@ public class ScrabbleGame {
    
     private Board board;
 
-    public static void main(String[] args) {
-
-        ScrabbleGame game = new ScrabbleGame();
-        game.startGame();
-    }
+   
 
     public void startGame() {
 
        int numberOfPlayers=4;
 
-        System.out.println("Nombre de joueurs : " + numberOfPlayers);
+       System.out.println("Nombre de joueurs : " + numberOfPlayers);
 
         tileBag = new TileBag("FRENCH");
 
@@ -50,7 +46,7 @@ public class ScrabbleGame {
 
     }
 
-    private void distributeTiles(Player player) {
+    public void distributeTiles(Player player) {
         for (int i = 0; i < 7; i++) {
             Tile tile = tileBag.drawTile();
             if (tile != null) {
@@ -75,7 +71,7 @@ public class ScrabbleGame {
     }
     public void playTurn(Player player) {
         System.out.println(player.getName() + " joue son tour.");
-        System.out.println("Tuiles disponibles pour " + player.getName() + " au début du tour : " + player.getTilePile());
+      
     
         String word = player.chooseWord(board, tileBag);
         if (word == null) {
@@ -141,7 +137,7 @@ public class ScrabbleGame {
         announceWinner();
     }
 
-    private boolean allPlayersBlocked() {
+    public boolean allPlayersBlocked() {
         Dictionary dictionary = new Dictionary();
         for (Player player : players) {
             if (player.canFormAnyWord(board, dictionary)) {

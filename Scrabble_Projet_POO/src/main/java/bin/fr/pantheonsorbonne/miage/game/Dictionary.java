@@ -36,7 +36,7 @@ public class Dictionary {
         }
     }
 
-    private String removeAccents(String input) {
+    public String removeAccents(String input) {
         String normalized = java.text.Normalizer.normalize(input, java.text.Normalizer.Form.NFD);
         return normalized.replaceAll("[^\\p{ASCII}]", "");
     }

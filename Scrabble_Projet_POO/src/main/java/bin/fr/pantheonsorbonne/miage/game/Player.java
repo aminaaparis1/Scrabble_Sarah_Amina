@@ -45,6 +45,10 @@ public abstract class Player {
         this.score = Math.max(0, this.score - points); 
     }
 
+    public TileBag getTileBag(){
+        return this.tileBag;
+    }
+
    
     public List<Tile> getTilePile() {
         return tilePile;
@@ -65,23 +69,24 @@ public abstract class Player {
     public Language getActiveLanguage() {
         return activeLanguage;
     }
+    
+    
 
     
     public void changeLanguage(Language newLanguage) {
         this.activeLanguage = newLanguage;
-        this.tileBag = new TileBag(newLanguage.name()); 
-        drawTiles(); 
+        
     }
 
     private void drawTiles() {
         while (tilePile.size() < 7 && tileBag.getRemainingTiles() > 0) {
             Tile tile = tileBag.drawTile();
             if (tile != null) {
-                System.out.println("Ajout de la tuile : " + tile);
+                
                 tilePile.add(tile);
             }
         }
-        System.out.println("Tuiles après tirage : " + tilePile);
+        
     }
     
     public abstract void penalizeOpponent(List<Player> players);
@@ -195,7 +200,7 @@ public String chooseWord(Board board, TileBag tileBag) {
 }
 
 
-private List<String> generatePossibleWords(Dictionary dictionary) {
+public List<String> generatePossibleWords(Dictionary dictionary) {
     Set<String> possibleWords = new HashSet<>(); 
     List<Tile> tiles = new ArrayList<>(this.getTilePile());
     generatePermutations("", tiles, possibleWords, dictionary);
@@ -289,20 +294,14 @@ public void refillTiles(TileBag tileBag) {
             addTile(tile); 
         }
     }
-
-    
-   
-
 }
 
 public boolean hasTile(char letter) {
     for (Tile tile : tilePile) {
-        if (tile.getLetter() == letter) {
-            System.out.println("Tuile trouvée : " + letter);
+        if (tile.getLetter() == letter || tile.getLetter() == '*') {
             return true;
         }
     }
-    System.out.println("Tuile non trouvée : " + letter);
     return false;
 }
 

@@ -31,7 +31,7 @@ public class TileBag {
     }
     
 
-    private void addFrenchTiles() {
+    public void addFrenchTiles() {
         addTiles('A', 9, 1);
         addTiles('E', 15, 1);
         addTiles('I', 8, 1);
@@ -63,7 +63,7 @@ public class TileBag {
         System.out.println("Tuiles françaises ajoutées : " + tiles.size());
     }
 
-    private void addEnglishTiles() {
+    public void addEnglishTiles() {
         addTiles('A', 9, 1);
         addTiles('E', 12, 1);
         addTiles('I', 9, 1);
@@ -93,7 +93,7 @@ public class TileBag {
         addTiles('*', 2, 0);  
     }
 
-    private void addSpanishTiles() {
+    public void addSpanishTiles() {
         addTiles('A', 12, 1);
         addTiles('E', 12, 1);
         addTiles('O', 9, 1);
@@ -122,11 +122,13 @@ public class TileBag {
         addTiles('*', 2, 0);  
     }
 
-    private void addTiles(char letter, int count, int value) {
+    public void addTiles(char letter, int count, int value) {
         for (int i = 0; i < count; i++) {
             tiles.add(new Tile(letter, value));
         }
     }
+
+    
 
     public Tile drawTile() {
         if (tiles.isEmpty()) {
