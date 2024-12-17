@@ -61,11 +61,5 @@ public class Dictionary {
     }
     
 
-    public static void main(String[] args) {
-        Dictionary dictionary = new Dictionary();
-        System.out.println(dictionary.isWordValid("erre", "FRENCH"));   
-        System.out.println(dictionary.isWordValid("dog", "ENGLISH"));    
-        System.out.println(dictionary.isWordValid("gato", "SPANISH"));   
-        System.out.println(dictionary.isWordValid("voiture", "FRENCH"));
-    }
+   
 }
