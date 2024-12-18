@@ -46,16 +46,20 @@ public class Board {
         return SpecialType.NONE;
     }
 
-    public void placeTile(Tile tile, int x, int y, Player player) {
+    public boolean placeTile(Tile tile, int x, int y, Player player) {
         if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) {
-            throw new IllegalArgumentException("Position hors du plateau.");
+            System.out.println("Position hors du plateau.");
+            return false;
         }
         if (grid[x][y] != null) {
-            throw new IllegalArgumentException("Case déjà occupée.");
+            System.out.println("Case déjà occupée.");
+            return false;
         }
         grid[x][y] = tile;
-        applySpecialEffect(tile, x, y,player);
+        applySpecialEffect(tile, x, y, player);
+        return true;
     }
+    
 
     private void applySpecialEffect(Tile tile, int x, int y,  Player player) {
         SpecialType specialType = specialGrid[x][y];
@@ -194,6 +198,10 @@ public class Board {
         }
         return true;
     }
+
+
+  
+    
     
     public boolean isConnectedToExistingWord(int startX, int startY, String word, boolean isHorizontal) {
         int x = startX;
@@ -254,7 +262,7 @@ public class Board {
         return true; 
     }
     public void placeWord(String word, int startX, int startY, boolean isHorizontal, Player player) {
-    System.out.println("Tentative de placement du mot : " + word + " par " + player.getName());
+    
     
 
     
@@ -285,7 +293,7 @@ public class Board {
         }
 
         
-        System.out.println("Placement de la lettre '" + currentChar + "' en (" + x + ", " + y + ")");
+       
         Tile tile = new Tile(currentChar, player.getTileValue(currentChar));
         placeTile(tile, x, y, player);
     }
