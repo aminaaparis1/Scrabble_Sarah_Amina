@@ -263,9 +263,6 @@ public class Board {
     }
     public void placeWord(String word, int startX, int startY, boolean isHorizontal, Player player) {
     
-    
-
-    
     List<Character> requiredTiles = new ArrayList<>();
     for (char letter : word.toCharArray()) {
         requiredTiles.add(letter);
@@ -292,8 +289,6 @@ public class Board {
             } 
         }
 
-        
-       
         Tile tile = new Tile(currentChar, player.getTileValue(currentChar));
         placeTile(tile, x, y, player);
     }
