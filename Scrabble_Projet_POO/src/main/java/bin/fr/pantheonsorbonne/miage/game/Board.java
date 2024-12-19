@@ -25,7 +25,7 @@ public class Board {
         }
     }
 
-    private SpecialType determineSpecialType(int x, int y) {
+    public SpecialType determineSpecialType(int x, int y) {
         if ((x == 0 && y == 0) || (x == 14 && y == 14) || (x == 0 && y == 14) || (x == 14 && y == 0)) {
             return SpecialType.TRIPLE_WORD;
         }
@@ -61,7 +61,7 @@ public class Board {
     }
     
 
-    private void applySpecialEffect(Tile tile, int x, int y,  Player player) {
+    public void applySpecialEffect(Tile tile, int x, int y,  Player player) {
         SpecialType specialType = specialGrid[x][y];
         switch (specialType) {
             case DOUBLE_LETTER:

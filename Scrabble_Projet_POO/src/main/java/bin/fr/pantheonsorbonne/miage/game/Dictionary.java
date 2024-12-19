@@ -18,14 +18,14 @@ public class Dictionary {
         loadWords();
     }
 
-    private void loadWords() {
+    public void loadWords() {
         loadWordsFromFile("Scrabble_Projet_POO/src/main/resources/dictionnaires/dictionnaire_fr.txt", frenchWords);
         loadWordsFromFile("Scrabble_Projet_POO/src/main/resources/dictionnaires/dictionnaire_en.txt", englishWords);
         loadWordsFromFile("Scrabble_Projet_POO/src/main/resources/dictionnaires/dictionnaire_es.txt", spanishWords);
         
     }
 
-    private void loadWordsFromFile(String filePath, Set<String> wordSet) {
+    public void loadWordsFromFile(String filePath, Set<String> wordSet) {
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {

@@ -235,6 +235,7 @@
 			<name>MIAGE.DEV maven repository releases</name>
 			<url>https://maven.miage.dev/releases</url>
 		</repository>
+
 	</repositories>
 
 </project>

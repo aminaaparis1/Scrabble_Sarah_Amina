@@ -70,19 +70,15 @@ public abstract class Player {
         return activeLanguage;
     }
     
-    
-
-    
     public void changeLanguage(Language newLanguage) {
         this.activeLanguage = newLanguage;
         
     }
 
-    private void drawTiles() {
+    public void drawTiles() {
         while (tilePile.size() < 7 && tileBag.getRemainingTiles() > 0) {
             Tile tile = tileBag.drawTile();
             if (tile != null) {
-                
                 tilePile.add(tile);
             }
         }
