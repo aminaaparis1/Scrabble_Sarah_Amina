@@ -163,8 +163,7 @@ public String chooseWord(Board board, TileBag tileBag) {
             System.out.println("Mot rejeté (lettres manquantes) : " + word);
             continue;
         }
-
-        
+ 
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 15; y++) {
                 for (boolean isHorizontal : new boolean[]{true, false}) {
@@ -227,8 +226,6 @@ public void generatePermutations(String prefix, List<Tile> tiles, Set<String> wo
         }
     }
 }
-
-
 public void removeTile(char letter) {
     for (int i = 0; i < tilePile.size(); i++) {
         Tile tile = tilePile.get(i);
@@ -284,8 +281,6 @@ public boolean canFormAnyWord(Board board, Dictionary dictionary) {
     }
     return false; 
 }
-
-
 
 public void refillTiles(TileBag tileBag) {
     while (tilePile.size() < MAX_TILES && tileBag.getRemainingTiles() > 0) {

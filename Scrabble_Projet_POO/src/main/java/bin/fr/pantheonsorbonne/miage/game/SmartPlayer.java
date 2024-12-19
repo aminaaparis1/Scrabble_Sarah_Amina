@@ -4,7 +4,7 @@ import java.util.List;
 
 public class SmartPlayer extends Player {
 
-    SmartPlayer(String name) {
+    public SmartPlayer(String name) {
         super(name);
     }
 

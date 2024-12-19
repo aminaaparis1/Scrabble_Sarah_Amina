@@ -1,0 +1,13 @@
+bin\fr\pantheonsorbonne\miage\game\StupidPlayer.class
+bin\fr\pantheonsorbonne\miage\engine\local\LocalScrabbleGame.class
+bin\fr\pantheonsorbonne\miage\game\SpecialType.class
+bin\fr\pantheonsorbonne\miage\game\SmartPlayer.class
+bin\fr\pantheonsorbonne\miage\game\ScrabbleGame.class
+bin\fr\pantheonsorbonne\miage\game\Player.class
+bin\fr\pantheonsorbonne\miage\game\Board$1.class
+bin\fr\pantheonsorbonne\miage\game\TileBag.class
+bin\fr\pantheonsorbonne\miage\game\Dictionary.class
+bin\fr\pantheonsorbonne\miage\game\Board.class
+bin\fr\pantheonsorbonne\miage\game\Language.class
+bin\fr\pantheonsorbonne\miage\game\Main.class
+bin\fr\pantheonsorbonne\miage\game\Tile.class

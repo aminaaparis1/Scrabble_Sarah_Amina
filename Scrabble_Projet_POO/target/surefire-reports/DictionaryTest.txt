@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: DictionaryTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.023 s <<< FAILURE! - in DictionaryTest
+DictionaryTest.testLoadWords  Time elapsed: 0.016 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at DictionaryTest.testLoadWords(DictionaryTest.java:15)
+

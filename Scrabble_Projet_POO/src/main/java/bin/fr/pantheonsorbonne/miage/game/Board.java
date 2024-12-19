@@ -153,7 +153,7 @@ public class Board {
         player.changeLanguage(newLanguage);
 
         TileBag currentTileBag=player.getTileBag();
-        TileBag newTileBag=new TileBag(newLanguage.name());
+        TileBag newTileBag=new TileBag(newLanguage.toString());
 
         while(newTileBag.getRemainingTiles()>0){
             Tile newTile=newTileBag.drawTile();
